@@ -45,15 +45,16 @@ public class TeacherRepository : ITeacherRepository
 
     public void Update(int? id, TeacherViewModel teacher)
     {
-        if (!teacher.File.IsValidFile()) return;
-
-
         var existTeacher = GetById(id);
+
         existTeacher.Name = teacher.Name;
         existTeacher.Surname = teacher.Surname;
         existTeacher.Description = teacher.Description;
-        existTeacher.ImageUrl = teacher.ImageUrl;
-        existTeacher.ImageUrl = teacher.File.UpdateFile(_environment.WebRootPath, FOLDER_NAME, existTeacher.ImageUrl);
+
+        if (teacher.File is not null && teacher.File.IsValidFile())
+            existTeacher.ImageUrl = teacher.File.UpdateFile(_environment.WebRootPath, FOLDER_NAME, existTeacher.ImageUrl);
+
+        _context.SaveChanges();
     }
 
     public void Delete(int? teacherId)

@@ -43,13 +43,16 @@ public class AdminDashboardController : Controller
     public IActionResult Update(int? id)
     {
         var existTeacher = _teacherRepository.GetById(id);
-        TeacherViewModel teacher = new TeacherViewModel()
+        if (existTeacher is null) return BadRequest();
+
+        var teamMember = new TeacherViewModel
         {
             Name = existTeacher.Name,
             Surname = existTeacher.Surname,
             Description = existTeacher.Description,
+            ImageUrl = existTeacher.ImageUrl,
         };
-        return View(teacher);
+        return View(teamMember);  
     }
 
     [HttpPost]
