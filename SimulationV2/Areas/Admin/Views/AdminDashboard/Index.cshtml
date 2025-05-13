@@ -1,0 +1,38 @@
+﻿@model List<Teacher>
+<div class="container">
+    <a class="btn btn-primary mb-3" type="button" asp-controller="AdminDashboard" asp-action="Create">Add Teacher</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="row">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int counter = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@counter</th>
+                    <td>@item.Name</td>
+                    <td>@item.Surname</td>
+                    <td>@item.Description</td>
+                    <td>
+                        <img src="~/uploads/teacherImage/@item.ImageUrl" alt="Teacher Image" style="width: 100px; height:100px;" />
+                    </td>
+                    <td>
+                        <a type="button" class="btn btn-warning mr-2" asp-controller="AdminDashboard" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                        <a type="button" class="btn btn-danger" asp-controller="AdminDashboard" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+                counter++;
+            }
+        </tbody>
+    </table>
+</div>

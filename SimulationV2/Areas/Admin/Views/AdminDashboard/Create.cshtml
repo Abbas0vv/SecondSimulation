@@ -1,0 +1,31 @@
+﻿@model TeacherViewModel
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data" class="d-flex flex-column">
+        <div class="row">
+            <div class="form-group col-lg-6">
+                <label asp-for="Name">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Your Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group col-lg-6">
+                <label asp-for="Surname">Surname</label>
+                <input asp-for="Surname" class="form-control" placeholder="Your Surname">
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group col-lg-12">
+                <label asp-for="Description">Description</label>
+                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Your Description"></textarea>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="File">File</label>
+                <input type="file" asp-for="File" class="form-control-file">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success mt-4">Create Teacher</button>
+            </div>
+        </div>
+    </form>
+</div>
