@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using SimulationV2.Database.Interfaces;
 using SimulationV2.Database.Models;
 using SimulationV2.Database.ViewModels;
 using SimulationV2.Helpers.Extentions;
@@ -53,6 +53,7 @@ public class TeacherRepository : ITeacherRepository
         existTeacher.Surname = teacher.Surname;
         existTeacher.Description = teacher.Description;
         existTeacher.ImageUrl = teacher.ImageUrl;
+        existTeacher.ImageUrl = teacher.File.UpdateFile(_environment.WebRootPath, FOLDER_NAME, existTeacher.ImageUrl);
     }
 
     public void Delete(int? teacherId)
